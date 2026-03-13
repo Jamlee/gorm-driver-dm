@@ -1,6 +1,6 @@
-module github.com/Leefs/gorm-driver-dm
+module github.com/Jamlee/gorm-driver-dm
 
-go 1.17
+go 1.19
 
 require (
 	github.com/emirpasic/gods v1.12.0

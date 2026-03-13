@@ -3,13 +3,14 @@ package dm
 import (
 	"database/sql"
 	"fmt"
-	"github.com/Leefs/gorm-driver-dm/clauses"
-	"gorm.io/gorm/utils"
 	"regexp"
 	"strconv"
 	"strings"
 
-	_ "github.com/Leefs/gorm-driver-dm/dmr"
+	"github.com/Jamlee/gorm-driver-dm/clauses"
+	"gorm.io/gorm/utils"
+
+	_ "github.com/Jamlee/gorm-driver-dm/dmr"
 	"github.com/thoas/go-funk"
 	"gorm.io/gorm"
 	"gorm.io/gorm/callbacks"

@@ -3,6 +3,8 @@
  * All rights reserved.
  */
 
+// just copy from zzh_linux for disable ide warning
+
 package security
 
 import "plugin"
@@ -51,31 +53,31 @@ func initThirdPartCipher(cipherPath string) (err error) {
 }
 
 func cipherGetCount() int {
-	ret := cipherGetCountProc.(func() interface{})()
+	ret := cipherGetCountProc.(func() any)()
 	return ret.(int)
 }
 
 func cipherGetInfo(seqno, cipherId, cipherName, _type, blkSize, khSIze uintptr) {
-	ret := cipherGetInfoProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) interface{})(seqno, cipherId, cipherName, _type, blkSize, khSIze)
+	ret := cipherGetInfoProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) any)(seqno, cipherId, cipherName, _type, blkSize, khSIze)
 	if ret.(int) == 0 {
 		panic("ThirdPartyCipher: call cipher_get_info failed")
 	}
 }
 
 func cipherEncryptInit(cipherId, key, keySize, cipherPara uintptr) {
-	ret := cipherEncryptInitProc.(func(uintptr, uintptr, uintptr, uintptr) interface{})(cipherId, key, keySize, cipherPara)
+	ret := cipherEncryptInitProc.(func(uintptr, uintptr, uintptr, uintptr) any)(cipherId, key, keySize, cipherPara)
 	if ret.(int) == 0 {
 		panic("ThirdPartyCipher: call cipher_encrypt_init failed")
 	}
 }
 
 func cipherGetCipherTextSize(cipherId, cipherPara, plainTextSize uintptr) uintptr {
-	ciphertextLen := cipherGetCipherTextSizeProc.(func(uintptr, uintptr, uintptr) interface{})(cipherId, cipherPara, plainTextSize)
+	ciphertextLen := cipherGetCipherTextSizeProc.(func(uintptr, uintptr, uintptr) any)(cipherId, cipherPara, plainTextSize)
 	return ciphertextLen.(uintptr)
 }
 
 func cipherEncrypt(cipherId, cipherPara, plainText, plainTextSize, cipherText, cipherTextBufSize uintptr) uintptr {
-	ret := cipherEncryptProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) interface{})(cipherId, cipherPara, plainText, plainTextSize, cipherText, cipherTextBufSize)
+	ret := cipherEncryptProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) any)(cipherId, cipherPara, plainText, plainTextSize, cipherText, cipherTextBufSize)
 	return ret.(uintptr)
 }
 
@@ -84,13 +86,13 @@ func cipherClean(cipherId, cipherPara uintptr) {
 }
 
 func cipherDecryptInit(cipherId, key, keySize, cipherPara uintptr) {
-	ret := cipherDecryptInitProc.(func(uintptr, uintptr, uintptr, uintptr) interface{})(cipherId, key, keySize, cipherPara)
+	ret := cipherDecryptInitProc.(func(uintptr, uintptr, uintptr, uintptr) any)(cipherId, key, keySize, cipherPara)
 	if ret.(int) == 0 {
 		panic("ThirdPartyCipher: call cipher_decrypt_init failed")
 	}
 }
 
 func cipherDecrypt(cipherId, cipherPara, cipherText, cipherTextSize, plainText, plainTextBufSize uintptr) uintptr {
-	ret := cipherDecryptProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) interface{})(cipherId, cipherPara, cipherText, cipherTextSize, plainText, plainTextBufSize)
+	ret := cipherDecryptProc.(func(uintptr, uintptr, uintptr, uintptr, uintptr, uintptr) any)(cipherId, cipherPara, cipherText, cipherTextSize, plainText, plainTextBufSize)
 	return ret.(uintptr)
 }

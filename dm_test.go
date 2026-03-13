@@ -2,10 +2,11 @@ package dm
 
 import (
 	"fmt"
-	dmSchema "github.com/Leefs/gorm-driver-dm/schema"
-	"gorm.io/gorm"
 	"testing"
 	"time"
+
+	dmSchema "github.com/Jamlee/gorm-driver-dm/schema"
+	"gorm.io/gorm"
 )
 
 var db *gorm.DB
